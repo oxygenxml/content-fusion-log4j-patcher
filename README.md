@@ -1,6 +1,6 @@
 # content-fusion-log4j-patcher
 
-This is a tool that updates the log4j library to version 2.16 in an Oxygen Content Fusion installation.
+This is a tool that removes the JndiLookup class from tje log4j library found in an Oxygen Content Fusion installation.
 
 ### Prerequisites
 The patch requires the zip command to be installed before running and it must be ran as root.
