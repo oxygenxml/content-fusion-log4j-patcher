@@ -8,7 +8,7 @@ The patch requires the zip command to be installed before running and it must be
 ### Instructions
 
 - Enable maintenance mode [1] in Content Fusion
-- Copy the log4shell-patch.sh to the Content Fusion host and execute it:
+- Copy the [log4shell-patch.sh](https://github.com/oxygenxml/content-fusion-log4j-patcher/releases/download/1.0.0/log4shell-patch.sh) to the Content Fusion host and execute it:
   ```
   sudo bash log4shell-patch.sh
   ```
