@@ -89,7 +89,7 @@ LS_LOG4JCORE=$(docker-compose exec license-servlet find /tomcat/webapps/ROOT/WEB
 LS_LOG4JCORE=$(echo "${LS_LOG4JCORE}" | tr -d '\r')
 
 if [ "${LS_LOG4JCORE}" == "" ]; then
-  echo "log4j-core not present in this license-servlet, nothing to patch."
+  echo "log4j-core not present in license-servlet, nothing to patch."
 else
   echo "Patching ${LS_LOG4JCORE}"
   LS_JAR=${TMP_DIR}/license-servlet.jar
