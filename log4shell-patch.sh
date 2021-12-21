@@ -5,6 +5,12 @@ if [ `id -u` != "0" ]; then
   exit 1
 fi
 
+if ! command -v zip &> /dev/null
+then
+  echo "'zip' is required to apply this patch. Please install it and try again."
+  exit 1
+fi
+
 set -e
 
 # Move to the directory where this script is located.
@@ -14,6 +20,12 @@ cd "${SCRIPT_DIR}"
 SCRIPT_DIR=$(pwd)
 
 LIB_DIR=${SCRIPT_DIR}/lib
+
+TMP_DIR=$(mktemp -d /tmp/log4temp.XXXXXX)
+function exit_cleanup() {
+  rm -rf "${TMP_DIR}"
+}
+trap exit_cleanup EXIT
 
 #
 # @param $1 image_name The name of the image where changes should be commited.
@@ -59,6 +71,27 @@ function patch() {
       patched_at_least_one_jar=true
     fi
   done
+
+  local log4j1_in_container
+  log4j1_in_container=$(docker exec "${container_id}" find "${lib_path}" -name "log4j-1.2.17.jar" -or -name "oxygen-patched-log4j*jar")
+  log4j1_in_container=$(echo "${log4j1_in_container}" | tr -d '\r')
+
+  if [ "${log4j1_in_container}" != "" ]; then
+    # CF-1500
+    echo -n "  log4j1... "
+
+    local log4j1_jar=${TMP_DIR}/log4j1.jar
+    docker cp "${container_id}:${log4j1_in_container}" "${log4j1_jar}"
+
+    set +e
+    zip -q -d "${log4j1_jar}" "org/apache/log4j/net/JMSAppender.class" &> /dev/null
+    set -e
+
+    docker cp "${log4j1_jar}" "${container_id}:${log4j1_in_container}"
+
+    echo "Ok"
+    patched_at_least_one_jar=true
+  fi
 
   if [[ "${patched_at_least_one_jar}" == "true" ]]; then
     echo -n "  Committing changes... "
