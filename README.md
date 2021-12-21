@@ -5,7 +5,7 @@ This is a tool that updates the log4j library, found in an Oxygen Content Fusion
 ### Instructions
 
 - Enable maintenance mode [1] in Content Fusion
-- Extract [content-fusion-log4j-patcher.zip](https://github.com/oxygenxml/content-fusion-log4j-patcher/releases/download/untagged-fa244daf3e6ff37369fb/content-fusion-log4j-patcher.zip) on the Content Fusion host and execute the log4shell-patch.sh script:
+- Extract [content-fusion-log4j-patcher.zip](https://github.com/oxygenxml/content-fusion-log4j-patcher/releases/download/1.1.0/content-fusion-log4j-patcher.zip) on the Content Fusion host and execute the log4shell-patch.sh script:
   ```
   sudo bash log4shell-patch.sh
   ```
