@@ -38,6 +38,14 @@ function patch() {
     path_in_container=$(docker exec "${container_id}" find "${lib_path}" -name "${jar}")
     path_in_container=$(echo "${path_in_container}" | tr -d '\r')
 
+    if [ "${path_in_container}" == "" ] && [ "${jar}" == "log4j-slf4j-impl*jar" ]; then
+      echo -n "... "
+
+      # In CF-2/review-api the slf4j-impl jar has a different name
+      path_in_container=$(docker exec "${container_id}" find "${lib_path}" -name "slf4j-log4j12-*jar")
+      path_in_container=$(echo "${path_in_container}" | tr -d '\r')
+    fi
+
     if [ "${path_in_container}" == "" ]; then
       echo "Ok"
     else
