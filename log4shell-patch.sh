@@ -75,11 +75,12 @@ echo ""
 echo "Searching for containers to patch"
 echo ""
 
-WA_IMAGE_NAME=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep webreviewer-webauthor)
-CF_IMAGE_NAME=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep webreviewer-api)
-LS_IMAGE_NAME=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep license-servlet)
-
 pushd /fusion 1> /dev/null
+  WA_IMAGE_NAME=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep webreviewer-webauthor)
+  # review-api might have two tags for the same image created by patch_CF_1233
+  CF_IMAGE_NAME=$(grep "oxygenxml/webreviewer-api" < /fusion/docker-compose.yml | awk '{print $2}')
+  LS_IMAGE_NAME=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep license-servlet)
+
   WA_CONTAINER=$(docker-compose ps -q webauthor)
   WA_CONTAINER=$(echo "${WA_CONTAINER}" | tr -d '\r')
 
