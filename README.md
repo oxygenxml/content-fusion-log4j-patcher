@@ -7,6 +7,10 @@ It also removes the JMSAppender.class from the log4j-1 library found in Content 
 
 - The patch script must be executed with root privileges.
 - The 'zip' command is required to apply this patch.
+  ```
+  sudo apt install zip # For Ubuntu
+  sudo yum install zip # For CentOS/RHEL
+  ```
 
 ### Instructions
 
