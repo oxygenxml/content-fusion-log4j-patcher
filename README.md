@@ -1,14 +1,11 @@
 # content-fusion-log4j-patcher
 
-This is a tool that removes the JndiLookup class from the log4j library found in an Oxygen Content Fusion installation to avoid the Log4Shell vulnerability. 
-
-### Prerequisites
-The patch requires the zip command to be installed before running and it must be ran as root.
+This is a tool that updates the log4j library, found in an Oxygen Content Fusion, to version 2.17. 
 
 ### Instructions
 
 - Enable maintenance mode [1] in Content Fusion
-- Copy the [log4shell-patch.sh](https://github.com/oxygenxml/content-fusion-log4j-patcher/releases/download/1.0.0/log4shell-patch.sh) to the Content Fusion host and execute it:
+- Extract [content-fusion-log4j-patcher.zip](https://github.com/oxygenxml/content-fusion-log4j-patcher/releases/download/untagged-fa244daf3e6ff37369fb/content-fusion-log4j-patcher.zip) on the Content Fusion host and execute the log4shell-patch.sh script:
   ```
   sudo bash log4shell-patch.sh
   ```
