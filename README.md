@@ -15,7 +15,7 @@ It also removes the JMSAppender.class from the log4j-1 library found in Content 
 ### Instructions
 
 - Enable maintenance mode [1] in Content Fusion
-- Extract [content-fusion-log4j-patcher.zip](https://github.com/oxygenxml/content-fusion-log4j-patcher/releases/download/1.2.0/content-fusion-log4j-patcher.zip) on the Content Fusion host and execute the log4shell-patch.sh script:
+- Extract [content-fusion-log4j-patcher.zip](https://github.com/oxygenxml/content-fusion-log4j-patcher/releases/download/1.3.0/content-fusion-log4j-patcher.zip) on the Content Fusion host and execute the log4shell-patch.sh script:
   ```
   sudo bash log4shell-patch.sh
   ```
