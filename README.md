@@ -1,6 +1,6 @@
 # content-fusion-log4j-patcher
 
-This is a tool that updates the log4j library, found in an Oxygen Content Fusion, to version 2.17.
+This is a tool that updates the log4j library, found in an Oxygen Content Fusion, to version 2.17.1
 It also removes the JMSAppender.class from the log4j-1 library found in Content Fusion 2.0.  
 
 ### Prerequisites
